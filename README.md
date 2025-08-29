@@ -4,11 +4,14 @@ A lightweight Discord bot that automatically records a specific user's voice whe
 
 ## Features
 
-- 🎯 **Targeted Recording** - Monitors and records only a specific Discord user
-- 🔄 **Auto-Follow** - Automatically joins voice channels when the target user joins
-- 📁 **Smart Saving** - Saves recordings with timestamps for easy organization  
-- 🎵 **High Quality** - Records in WAV format at 48kHz for crystal clear audio
-- 🚀 **Zero Configuration** - Just set your bot token and target user ID
+- 🎯 **Flexible Recording Modes** - Record single user, multiple users, or everyone in channel
+- 🔄 **Auto-Follow** - Automatically joins voice channels when target users join
+- 📁 **Smart Organization** - Separate files per user with timestamps and usernames
+- 🎵 **Multiple Formats** - Output in WAV, MP3, or raw PCM format
+- 🚫 **Channel Filtering** - Whitelist/blacklist specific channels 
+- ⏱️ **Duration Limits** - Set maximum recording length per session
+- 🔇 **Silence Detection** - Automatically stop recording after silence periods
+- 🚀 **Easy Configuration** - Comprehensive .env settings for all options
 
 ## Quick Start
 
@@ -48,28 +51,61 @@ A lightweight Discord bot that automatically records a specific user's voice whe
 
 ### Configuration
 
-Edit `.env` file:
+Edit `.env` file with your preferred settings:
+
 ```env
+# Required
 BOT_TOKEN=your_discord_bot_token_here
+
+# Recording Mode
+RECORDING_MODE=single_user
+# Options: single_user, all_users, whitelist
+
 TARGET_USER_ID=123456789012345678
+# For single_user: one user ID
+# For whitelist: comma-separated IDs (123456789,987654321)
+
+# Optional Filters
+ALLOWED_CHANNELS=123456789012345678
+# Only record in these channels (leave empty for all)
+BLOCKED_CHANNELS=987654321098765432
+# Never record in these channels
+
+# Audio Settings  
+AUDIO_FORMAT=wav
+# Options: wav, mp3, pcm
+MAX_RECORDING_MINUTES=60
+# Max length per session (0 = unlimited)
+SILENCE_TIMEOUT=5000
+# Stop recording after this many ms of silence
 ```
 
-To get a user ID, enable Developer Mode in Discord settings, then right-click a user and "Copy User ID".
+To get user/channel IDs, enable Developer Mode in Discord settings, then right-click and "Copy ID".
 
-## How It Works
+## Recording Modes
 
-The bot continuously monitors voice channel activity. When your target user:
-- **Joins** a voice channel → Bot automatically joins and starts recording
-- **Speaks** → Audio is captured and saved
-- **Leaves** → Recording stops and file is saved
-- **Switches channels** → Bot follows and continues recording
+### Single User Mode (`single_user`)
+- Records only one specific user
+- Bot joins when target user joins voice channels
+- Perfect for monitoring specific individuals
+
+### All Users Mode (`all_users`) 
+- Records everyone in voice channels
+- Creates separate files for each speaker
+- Great for meeting recordings
+
+### Whitelist Mode (`whitelist`)
+- Records only users in your whitelist
+- Specify multiple user IDs in TARGET_USER_ID
+- Ideal for team/group monitoring
 
 ## Audio Output
 
-- **Format**: WAV files at 48kHz mono
-- **Location**: `./recordings/` directory
-- **Naming**: `recording-YYYY-MM-DDTHH-mm-ss-sssZ.wav`
-- **Quality**: Professional-grade audio suitable for analysis or archival
+- **Format**: WAV, MP3, or PCM based on your configuration
+- **Location**: `./recordings/` directory  
+- **Naming**: `{username}-YYYY-MM-DDTHH-mm-ss-sssZ.{format}`
+- **Quality**: 48kHz mono, professional-grade audio
+- **Organization**: Separate files per user and speaking session
 
 ## Commands
 
