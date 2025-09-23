@@ -4,14 +4,14 @@ A lightweight Discord bot that automatically records a specific user's voice whe
 
 ## Features
 
-- 🎯 **Flexible Recording Modes** - Record single user, multiple users, or everyone in channel
-- 🔄 **Auto-Follow** - Automatically joins voice channels when target users join
-- 📁 **Smart Organization** - Separate files per user with timestamps and usernames
-- 🎵 **Multiple Formats** - Output in WAV, MP3, or raw PCM format
-- 🚫 **Channel Filtering** - Whitelist/blacklist specific channels 
-- ⏱️ **Duration Limits** - Set maximum recording length per session
-- 🔇 **Silence Detection** - Automatically stop recording after silence periods
-- 🚀 **Easy Configuration** - Comprehensive .env settings for all options
+-  **Flexible Recording Modes** - Record single user, multiple users, or everyone in channel
+-  **Auto-Follow** - Automatically joins voice channels when target users join
+-  **Smart Organization** - Separate files per user with timestamps and usernames
+-  **Multiple Formats** - Output in WAV, MP3, or raw PCM format
+-  **Channel Filtering** - Whitelist/blacklist specific channels 
+-  **Duration Limits** - Set maximum recording length per session
+-  **Silence Detection** - Automatically stop recording after silence periods
+-  **Easy Configuration** - Comprehensive .env settings for all options
 
 ## Quick Start
 
